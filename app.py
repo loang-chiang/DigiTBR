@@ -1,0 +1,138 @@
+import os
+
+from flask import Flask, flash, redirect, render_template, request, session, abort, url_for
+from flask_session import Session
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy import Integer, String, ForeignKey
+from functools import wraps
+from werkzeug.security import check_password_hash, generate_password_hash
+
+# configures application
+app = Flask(__name__)
+app.debug = True
+
+# configures session to use filesystem instead of signed cookies
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+app.config["SESSION_FILE_DIR"] = "./flask_session_cache"
+Session(app)
+
+
+# DATABASE CONFIGURATION
+class Base(DeclarativeBase):
+    pass
+db = SQLAlchemy(model_class=Base)
+
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
+db.init_app(app)
+
+# model declaration
+class User(db.Model):
+    __tablename__ = 'User'
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    username: Mapped[str] = mapped_column()
+    hash: Mapped[str] = mapped_column()
+
+# include any extra models here
+
+with app.app_context():
+    db.create_all()
+
+
+# PYTHON FUNCTIONS
+
+@app.after_request
+def after_request(response):  # disables caching of the response
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Expires"] = 0
+    response.headers["Pragma"] = "no-cache"
+    return response
+
+
+def login_required(f):  # requires user to have logged in to access certain routes
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get("user_id") is None:
+            return redirect("/login")
+        return f(*args, **kwargs)
+    return decorated_function
+
+
+@app.route("/")
+@login_required
+def index():  # shows the page index
+    return render_template("index.html")
+
+
+@app.route("/register", methods=["GET", "POST"])
+def register():  # registers new users
+    if request.method == "POST":
+        if not request.form.get("username"):
+            return render_template("error.html", message="Must provide username")
+        elif not request.form.get("password"):
+            return render_template("error.html", message="Must provide password")
+        elif not request.form.get("confirmation"):
+            return render_template("error.html", message="Must provide password a second time")
+        elif request.form.get("password") != request.form.get("confirmation"):
+            return render_template("error.html", message="Passwords do not match")
+
+        # queries database to check if username already exists
+        username = request.form.get("username")
+        print(username)
+        users = list(db.session.execute(db.select(User).filter_by(username=username)).scalars())
+        if len(users) > 0:
+            return render_template("error.html", message="Username already exists")
+
+        # inserts new user into the database
+        hashed_password = generate_password_hash(request.form.get("password"))
+        user = User(
+            username=username,
+            hash=hashed_password
+        )
+        db.session.add(user)
+        db.session.commit()
+
+        # gets user back to login page
+        return redirect("/login")
+
+    else:
+        return render_template("register.html")
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():  # logs users in
+    session.clear()  # forgets any user_id
+
+    if request.method == "POST":
+        if not request.form.get("username"):  # check if username was submitted
+            return render_template("error.html", message="Must provide username")
+        elif not request.form.get("password"):  # check if password was submitted
+            return render_template("error.html", message="Must provide password")
+
+        # queries database for username
+        username = request.form.get("username")
+
+        try:
+            user = db.session.execute(db.select(User).filter_by(username=username)).scalar_one()
+        except NoResultFound:
+            return render_template("error.html", message="Invalid username and/or password")
+
+        # checks if username exists and password are correct
+        if not user or not check_password_hash(user.hash, request.form.get("password")):
+            return render_template("error.html", message="Invalid username and/or password")
+
+        session["user_id"] = user.id  # remembers which user has logged in
+        return redirect("/")
+
+    else:
+        return render_template("login.html")
+
+
+@app.route("/logout")
+@login_required
+def logout():  # allows the user to log out of their account
+    session.clear()
+    return redirect("/")
