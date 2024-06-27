@@ -4,6 +4,102 @@
     Homepage
 {% endblock %}
 
+{% block nav %}
+    <div id="nav">
+        <div id="add-book">
+            <p>Add a book</p>  <!-- placeholder -->
+        </div>
+        <a id="log-out" href="/logout">Log out</a>
+    </div>
+{% endblock %}
+
 {% block main %}
-    <h1>Title!</h1>
+    <!-- this will only be shown when the user wants to add a new book -->
+    <div id="new-book">
+        <form action="/new_book" method="POST">
+
+            <div id="title-and-exit">
+                <h3>Add a book!</h3>
+                <button type="button" id="exit-form">X</button>
+            </div>
+
+            <div id="book-title-cont">
+                <label for="book-title">Title</label>
+                <input required id="book-title" name="title" type="text">
+            </div>
+
+            <div id="book-author-cont">
+                <label for="book-author">Author</label>
+                <input required id="book-author" type="text">
+            </div>
+
+            <div id="book-genre-cont">
+                <p>Genre</p>
+                <div class="book-genre" id="genre-fantasy">Fantasy</div>
+                <div class="book-genre" id="genre-scifi">Science Fiction</div>
+                <div class="book-genre" id="genre-romance">Romance</div>
+                <div class="book-genre" id="genre-mystery">Mystery</div>
+                <div class="book-genre" id="genre-contemporary">Contemporary</div>
+                <div class="book-genre" id="genre-litfic">Literary Fiction</div>
+                <div class="book-genre" id="genre-horror">Horror</div>
+                <div class="book-genre" id="genre-nonfiction">Non Fiction</div>
+                <div class="book-genre" id="genre-childrens">Children's</div>
+                <div class="book-genre" id="genre-graphicnovel">Graphic Novel</div>
+                <input class="required-category" type="hidden" id="genre" name="genre">  <!-- with js puts the genre here -->
+            </div>
+
+
+            <div id="book-priority-cont">
+                <p>Priority</p>
+                <div class="book-priority" id="priority-1">1</div>
+                <div class="book-priority" id="priority-2">2</div>
+                <div class="book-priority" id="priority-3">3</div>
+                <div class="book-priority" id="priority-4">4</div>
+                <div class="book-priority" id="priority-5">5</div>
+                <input class="required-category" type="hidden" id="priority" name="priority">  <!-- with js puts the priority level here -->
+            </div>
+
+            <div id="book-length-cont">
+                <p>Length</p>
+                <div class="book-length" id="length-100less">>100s</div>
+                <div class="book-length" id="length-100s">100s</div>
+                <div class="book-length" id="length-200s">200s</div>
+                <div class="book-length" id="length-300s">300s</div>
+                <div class="book-length" id="length-400s">400s</div>
+                <div class="book-length" id="length-500s">500s</div>
+                <div class="book-length" id="length-600s">600s</div>
+                <div class="book-length" id="length-600plus">600s+</div>
+                <input class="required-category" type="hidden" id="length" name="length">  <!-- with js puts the length here -->
+            </div>
+
+            <div id="book-agerange-cont">
+                <p>Age Range</p>
+                <div class="book-agerange" id="agerange-childrens">Children's</div>
+                <div class="book-agerange" id="agerange-mg">Middle Grade</div>
+                <div class="book-agerange" id="agerange-ya">Young Adult</div>
+                <div class="book-agerange" id="agerange-adult">Adult</div>
+                <div class="book-agerange" id="agerange-NA">Not Applicable</div>
+                <input class="required-category" type="hidden" id="agerange" name="agerange">  <!-- with js puts the length here -->
+            </div>
+
+            <div id="book-type-cont">
+                <p>Series?</p>
+                <div class="book-type" id="new-series">Standalone</div>
+                <div class="book-type" id="duotrilogy">Duology/Trilogy</div>
+                <div class="book-type" id="series">Series</div>
+                <div class="book-type" id="spinoff">Spin-off</div>
+                <input class="required-category" type="hidden" id="type" name="type">  <!-- with js puts the choice here -->
+            </div>
+
+            <!-- hopefully make this appear when if the user picks series -->
+            <div id="book-continuing-cont">
+                <p>For book series (optional)</p>
+                <div class="book-continuing" id="new-series">New series</div>
+                <div class="book-continuing" id="continuing">Continuing</div>
+                <input type="hidden" id="continuing" name="continuing">  <!-- with js puts the choice here -->
+            </div>
+
+            <button id="new-book-submit" type="submit">Submit</button>
+        </form>
+    </div>
 {% endblock %}

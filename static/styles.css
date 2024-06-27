@@ -1,0 +1,36 @@
+/* TEST STYLING */
+
+
+/* NAVIGATION STYLING */
+#title-and-nav, #nav {
+    display: flex;
+}
+
+#title-and-nav {
+    justify-content: space-between;
+}
+
+/* STYLING FOR THE NEW BOOK FORM */
+#new-book {
+    display: none; /* by default hides the new book form */
+    width: 80%;
+    margin: auto;
+    background-color: beige;
+}
+
+div {
+    border: 2px solid black;
+}
+
+
+/* STYLING FOR THE TBR COLLECTION */
+
+
+
+/* STYLING FOR THE LOGIN/REGISTER TEMPLATES */
+
+
+
+/* GENERAL STYLING */
+
+

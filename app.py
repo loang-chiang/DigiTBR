@@ -36,13 +36,24 @@ class User(db.Model):
     username: Mapped[str] = mapped_column()
     hash: Mapped[str] = mapped_column()
 
-# include any extra models here
+class Book(db.Model):
+    __tablename__ = 'Book'
+
+    id:  Mapped[int] = mapped_column(primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("User.id"))
+    title: Mapped[str] = mapped_column()
+    author: Mapped[str] = mapped_column()
+    genre: Mapped[str] = mapped_column()
+    length: Mapped[int] = mapped_column()
+    agerange: Mapped[str] = mapped_column()
+    type: Mapped[str] = mapped_column()
+    continuing: Mapped[str] = mapped_column()
 
 with app.app_context():
     db.create_all()
 
 
-# PYTHON FUNCTIONS
+# LOGIN AND LOGOUT FUNCTIONS
 
 @app.after_request
 def after_request(response):  # disables caching of the response
@@ -136,3 +147,11 @@ def login():  # logs users in
 def logout():  # allows the user to log out of their account
     session.clear()
     return redirect("/")
+
+
+# OTHER FUNCTIONS
+
+@app.route("/new_book", methods=["POST"]) 
+@login_required
+def new_book():  # adds new book to database
+    return redirect("/")  # takes user back to homepage
