@@ -47,8 +47,8 @@ class Book(db.Model):
     priority: Mapped[str] = mapped_column()
     length: Mapped[str] = mapped_column()
     agerange: Mapped[str] = mapped_column()
-    type: Mapped[str] = mapped_column()
-    continuing: Mapped[str] = mapped_column(nullable=True)
+    btype: Mapped[str] = mapped_column()
+    continuing: Mapped[str] = mapped_column()
 
 with app.app_context():
     db.create_all()
@@ -86,6 +86,7 @@ def index():  # shows the page index
     by_author = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.author).all()
     by_genre = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.genre).all()
     by_agerange = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.agerange).all()
+    by_type = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.btype).all()
 
     return render_template("index.html",
         by_title_a=by_title_a,
@@ -97,6 +98,7 @@ def index():  # shows the page index
         by_author=by_author,
         by_genre=by_genre,
         by_agerange=by_agerange,
+        by_type=by_type,
     )
 
 
@@ -183,7 +185,7 @@ def new_book():  # adds new book to database
     priority = request.form.get("priority")
     length = request.form.get("length")
     agerange = request.form.get("agerange")
-    type = request.form.get("type")
+    btype = request.form.get("type")
     continuing = request.form.get("continuing")
 
     # creates book instance and adds it to database
@@ -195,8 +197,8 @@ def new_book():  # adds new book to database
         priority=priority,
         length=length,
         agerange=agerange,
-        type=type,
-        continuing=continuing
+        btype=btype,
+        continuing=continuing,
     )
     db.session.add(book)
     db.session.commit()

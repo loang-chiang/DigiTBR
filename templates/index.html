@@ -40,6 +40,7 @@
         <option value="others-author">Author</option>
         <option value="others-genre">Genre</option>
         <option value="others-old">Age Range</option>
+        <option value="others-type">Type</option>
     </select>
 
 
@@ -197,6 +198,23 @@
         {% endfor %}
     </div>
 
+    <div id="cont-type" class="books-cont">
+        {% for book in by_type %}
+            <div class="book-div">
+                <p class="book-title">{{ book.title }}</p>
+                <p class="book-author">{{ book.author }}</p>
+                <p class="book-genre">{{ book.genre }}</p>
+                <p class="book-priority">{{ book.priority }}</p>
+                <p class="book-length">{{ book.length }}</p>
+                <p class="book-agerange">{{ book.agerange }}</p>
+                <p class="book-type">{{ book.type }}</p>
+                {% if book.title %}
+                    <p class="book-continuing">{{ book.continuing }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
 
     <!-- this will only be shown when the user wants to add a new book -->
     <div id="new-book">
@@ -279,7 +297,7 @@
             <div id="book-continuing-cont">
                 <p>For book series (optional)</p>
                 <div class="book-continuing" id="new-series">New series</div>
-                <div class="book-continuing" id="continuing">Continuing</div>
+                <div class="book-continuing" id="option-continuing">Continuing</div>
                 <input type="hidden" id="continuing" name="continuing">  <!-- with js puts the choice here -->
             </div>
 

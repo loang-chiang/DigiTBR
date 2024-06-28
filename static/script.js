@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // user clicks on book genre
     document.querySelectorAll(".book-genre").forEach(option => {
-        option.onclick = () => choice("genre", option, false);
+        option.onclick = () => choice("genre", option);
     })
 
     // user clicks on book priority
@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (option.textContent === "Duology/Trilogy" || option.textContent === "Series") {
                 if (!option.classList.contains("chosen")) {  // if clicking a second time, aka unchoosing
                     continuing_category.style.display = "none";
+
                     document.querySelectorAll(".book-continuing").forEach(choice => {
                         eliminate_choice("continuing", choice)  // eliminates the choices inside continuing
                     })
@@ -49,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             else {
                 continuing_category.style.display = "none";  // hides continuing category if not series
+
                 document.querySelectorAll(".book-continuing").forEach(choice => {
                     eliminate_choice("continuing", choice)  // eliminates the choices inside continuing
                 })
@@ -66,16 +68,16 @@ document.addEventListener('DOMContentLoaded', function() {
         let all_filled = true;
         document.querySelectorAll(".required-category").forEach(category => {
             if (category.value === "") {
-                all_filled = false;  // this means that the form won't send
+                all_filled = false;  // this means that the form won't send if there is lacking info
             }
         })
-        console.log(`value of ${document.querySelector("#continuing").value}`);  // DELETE THIS. FOR TESTING PURPOSES ONLY
         return all_filled;
     }
 
     // user clicks the x button without having submitted the form
     document.querySelector("#exit-form").onclick = function() {
-        clean_and_hide();
+        clean_form();
+        new_book_form.style.display = "none";
     }
 })
 
@@ -83,23 +85,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // FUNCTIONS
-function choice(category, option, delete_others = true) {  // runs when a user chooses an option
+function choice(category, option) {  // runs when a user chooses an option
     console.log(`Running choice function for category ${category} and option ${option.textContent}`);
 
     let choiceName = option.textContent;
-
-    if (delete_others) {  // if this category is single-choice
-        document.querySelectorAll(`.book-${category}`).forEach(choice => {
-            if (choice !== option && choice.classList.contains("chosen")) {
-                eliminate_choice(category, choice);  // eliminate all other choices
-            }
-        })
-    }
 
     if (option.classList.contains("chosen")) {  // if the choice has already been clicked
         eliminate_choice(category, option);
     }
     else {
+        document.querySelectorAll(`.book-${category}`).forEach(choice => {
+            if (choice !== option && choice.classList.contains("chosen")) {
+                eliminate_choice(category, choice);  // eliminate all other choices
+            }
+        })
+
         document.querySelector(`#${category}`).value = choiceName;  // adds choice to hidden input so the backend can read it
         option.classList.add("chosen");
         option.style.backgroundColor = "red";  // styling to show it's been chosen
@@ -107,7 +107,7 @@ function choice(category, option, delete_others = true) {  // runs when a user c
 }
 
 
-function eliminate_choice(category, option) {  // eliminates choice for multiple choice categories!
+function eliminate_choice(category, option) {  // eliminates choice!
     console.log(`Running eliminate_choice function for option ${option.textContent}`);
     
     document.querySelector(`#${category}`).value = "";  // empties the value of the choice so it won't go to the backend
@@ -116,10 +116,6 @@ function eliminate_choice(category, option) {  // eliminates choice for multiple
 }
 
 
-function clean_and_hide() {  // cleans the info for the new book form and hides the form
-    console.log("Running clean_and_hide function for this form");
-
-    document.querySelectorAll(".")
-
-    new_book_form.style.display = "none";  // hides form
+function clean_form() {  // cleans the info for the new book form. IN PROGRESS
+    console.log("Running clean_form function");
 }
