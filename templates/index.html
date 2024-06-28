@@ -14,9 +14,193 @@
 {% endblock %}
 
 {% block main %}
+    <!-- sort menu! -->
+    <h3>Sort by</h3>
+
+    <p>Title</p>
+    <select id="sort-title-">
+        <option value="title-a">A to Z</option>
+        <option value="title-z">Z to A</option>
+    </select>
+
+    <p>Priority</p>
+    <select id="sort-priority">
+        <option value="priority-high">Highest to lowest</option>
+        <option value="priority-low">Lowers to highest</option>
+    </select>
+
+    <p>Length</p>
+    <select id="sort-library-">
+        <option value="option-high">Longest to shortest</option>
+        <option value="option-low">Shortest to longest</option>
+    </select>
+
+    <p>Others</p>
+    <select id="sort-others-">
+        <option value="others-author">Author</option>
+        <option value="others-genre">Genre</option>
+        <option value="others-old">Age Range</option>
+    </select>
+
+
+    <!-- containers for the different sorting options -->
+    <div id="cont-title-a" class="books-cont">
+        {% for book in by_title_a %}
+            <div class="book-div">
+                <p class="book-title">{{ book.title }}</p>
+                <p class="book-author">{{ book.author }}</p>
+                <p class="book-genre">{{ book.genre }}</p>
+                <p class="book-priority">{{ book.priority }}</p>
+                <p class="book-length">{{ book.length }}</p>
+                <p class="book-agerange">{{ book.agerange }}</p>
+                <p class="book-type">{{ book.type }}</p>
+                {% if book.title %}
+                    <p class="book-continuing">{{ book.continuing }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="cont-title-z" class="books-cont">
+        {% for book in by_title_z %}
+            <div class="book-div">
+                <p class="book-title">{{ book.title }}</p>
+                <p class="book-author">{{ book.author }}</p>
+                <p class="book-genre">{{ book.genre }}</p>
+                <p class="book-priority">{{ book.priority }}</p>
+                <p class="book-length">{{ book.length }}</p>
+                <p class="book-agerange">{{ book.agerange }}</p>
+                <p class="book-type">{{ book.type }}</p>
+                {% if book.title %}
+                    <p class="book-continuing">{{ book.continuing }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="cont-priority-high" class="books-cont">
+        {% for book in by_priority_high %}
+            <div class="book-div">
+                <p class="book-title">{{ book.title }}</p>
+                <p class="book-author">{{ book.author }}</p>
+                <p class="book-genre">{{ book.genre }}</p>
+                <p class="book-priority">{{ book.priority }}</p>
+                <p class="book-length">{{ book.length }}</p>
+                <p class="book-agerange">{{ book.agerange }}</p>
+                <p class="book-type">{{ book.type }}</p>
+                {% if book.title %}
+                    <p class="book-continuing">{{ book.continuing }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="cont-priority-low" class="books-cont">
+        {% for book in by_priority_low %}
+            <div class="book-div">
+                <p class="book-title">{{ book.title }}</p>
+                <p class="book-author">{{ book.author }}</p>
+                <p class="book-genre">{{ book.genre }}</p>
+                <p class="book-priority">{{ book.priority }}</p>
+                <p class="book-length">{{ book.length }}</p>
+                <p class="book-agerange">{{ book.agerange }}</p>
+                <p class="book-type">{{ book.type }}</p>
+                {% if book.title %}
+                    <p class="book-continuing">{{ book.continuing }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="cont-length-high" class="books-cont">
+        {% for book in by_length_high %}
+            <div class="book-div">
+                <p class="book-title">{{ book.title }}</p>
+                <p class="book-author">{{ book.author }}</p>
+                <p class="book-genre">{{ book.genre }}</p>
+                <p class="book-priority">{{ book.priority }}</p>
+                <p class="book-length">{{ book.length }}</p>
+                <p class="book-agerange">{{ book.agerange }}</p>
+                <p class="book-type">{{ book.type }}</p>
+                {% if book.title %}
+                    <p class="book-continuing">{{ book.continuing }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="cont-length-high" class="books-cont">
+        {% for book in by_length_low %}
+            <div class="book-div">
+                <p class="book-title">{{ book.title }}</p>
+                <p class="book-author">{{ book.author }}</p>
+                <p class="book-genre">{{ book.genre }}</p>
+                <p class="book-priority">{{ book.priority }}</p>
+                <p class="book-length">{{ book.length }}</p>
+                <p class="book-agerange">{{ book.agerange }}</p>
+                <p class="book-type">{{ book.type }}</p>
+                {% if book.title %}
+                    <p class="book-continuing">{{ book.continuing }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="cont-author" class="books-cont">
+        {% for book in by_author %}
+            <div class="book-div">
+                <p class="book-title">{{ book.title }}</p>
+                <p class="book-author">{{ book.author }}</p>
+                <p class="book-genre">{{ book.genre }}</p>
+                <p class="book-priority">{{ book.priority }}</p>
+                <p class="book-length">{{ book.length }}</p>
+                <p class="book-agerange">{{ book.agerange }}</p>
+                <p class="book-type">{{ book.type }}</p>
+                {% if book.title %}
+                    <p class="book-continuing">{{ book.continuing }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="cont-genre" class="books-cont">
+        {% for book in by_genre %}
+            <div class="book-div">
+                <p class="book-title">{{ book.title }}</p>
+                <p class="book-author">{{ book.author }}</p>
+                <p class="book-genre">{{ book.genre }}</p>
+                <p class="book-priority">{{ book.priority }}</p>
+                <p class="book-length">{{ book.length }}</p>
+                <p class="book-agerange">{{ book.agerange }}</p>
+                <p class="book-type">{{ book.type }}</p>
+                {% if book.title %}
+                    <p class="book-continuing">{{ book.continuing }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="cont-agerange" class="books-cont">
+        {% for book in by_agerange %}
+            <div class="book-div">
+                <p class="book-title">{{ book.title }}</p>
+                <p class="book-author">{{ book.author }}</p>
+                <p class="book-genre">{{ book.genre }}</p>
+                <p class="book-priority">{{ book.priority }}</p>
+                <p class="book-length">{{ book.length }}</p>
+                <p class="book-agerange">{{ book.agerange }}</p>
+                <p class="book-type">{{ book.type }}</p>
+                {% if book.title %}
+                    <p class="book-continuing">{{ book.continuing }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+
     <!-- this will only be shown when the user wants to add a new book -->
     <div id="new-book">
-        <form action="/new_book" method="POST">
+        <form id="new-book-form" action="/new_book" method="POST">
 
             <div id="title-and-exit">
                 <h3>Add a book!</h3>
@@ -30,7 +214,7 @@
 
             <div id="book-author-cont">
                 <label for="book-author">Author</label>
-                <input required id="book-author" type="text">
+                <input required id="book-author" name="author" type="text">
             </div>
 
             <div id="book-genre-cont">

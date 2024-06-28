@@ -39,6 +39,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (option.textContent === "Duology/Trilogy" || option.textContent === "Series") {
                 if (!option.classList.contains("chosen")) {  // if clicking a second time, aka unchoosing
                     continuing_category.style.display = "none";
+                    document.querySelectorAll(".book-continuing").forEach(choice => {
+                        eliminate_choice("continuing", choice)  // eliminates the choices inside continuing
+                    })
                 }
                 else {
                     continuing_category.style.display = "block";  // displays continuing category if series
@@ -46,6 +49,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             else {
                 continuing_category.style.display = "none";  // hides continuing category if not series
+                document.querySelectorAll(".book-continuing").forEach(choice => {
+                    eliminate_choice("continuing", choice)  // eliminates the choices inside continuing
+                })
             }
         }
     })
@@ -56,13 +62,14 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 
     // user clicks submit on the new book form
-    document.querySelector("#new-book-submit").onsubmit = function() {
+    document.querySelector("#new-book-form").onsubmit = function() {
         let all_filled = true;
         document.querySelectorAll(".required-category").forEach(category => {
             if (category.value === "") {
                 all_filled = false;  // this means that the form won't send
             }
         })
+        console.log(`value of ${document.querySelector("#continuing").value}`);  // DELETE THIS. FOR TESTING PURPOSES ONLY
         return all_filled;
     }
 
@@ -106,15 +113,13 @@ function eliminate_choice(category, option) {  // eliminates choice for multiple
     document.querySelector(`#${category}`).value = "";  // empties the value of the choice so it won't go to the backend
     option.classList.remove("chosen");
     option.style.backgroundColor = "beige";  // styling to reflect it's been unchosen
-
-    if (category === "type") {
-        document.querySelector(`#continuing`).value = "";
-    }
 }
 
 
 function clean_and_hide() {  // cleans the info for the new book form and hides the form
     console.log("Running clean_and_hide function for this form");
+
+    document.querySelectorAll(".")
 
     new_book_form.style.display = "none";  // hides form
 }

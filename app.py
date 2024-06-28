@@ -44,10 +44,11 @@ class Book(db.Model):
     title: Mapped[str] = mapped_column()
     author: Mapped[str] = mapped_column()
     genre: Mapped[str] = mapped_column()
-    length: Mapped[int] = mapped_column()
+    priority: Mapped[str] = mapped_column()
+    length: Mapped[str] = mapped_column()
     agerange: Mapped[str] = mapped_column()
     type: Mapped[str] = mapped_column()
-    continuing: Mapped[str] = mapped_column()
+    continuing: Mapped[str] = mapped_column(nullable=True)
 
 with app.app_context():
     db.create_all()
@@ -75,7 +76,28 @@ def login_required(f):  # requires user to have logged in to access certain rout
 @app.route("/")
 @login_required
 def index():  # shows the page index
-    return render_template("index.html")
+    # order the user's books
+    by_title_a = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.title).all()
+    by_title_z = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.title.desc()).all()
+    by_priority_high = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.priority.desc()).all()
+    by_priority_low = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.priority).all() 
+    by_length_high = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.priority.desc()).all()
+    by_length_low = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.priority).all()
+    by_author = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.author).all()
+    by_genre = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.genre).all()
+    by_agerange = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.agerange).all()
+
+    return render_template("index.html",
+        by_title_a=by_title_a,
+        by_title_z=by_title_z,
+        by_priority_high=by_priority_high,
+        by_priority_low=by_priority_low,
+        by_length_high=by_length_high,
+        by_length_low=by_length_low,
+        by_author=by_author,
+        by_genre=by_genre,
+        by_agerange=by_agerange,
+    )
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -154,4 +176,29 @@ def logout():  # allows the user to log out of their account
 @app.route("/new_book", methods=["POST"]) 
 @login_required
 def new_book():  # adds new book to database
+    # gets info from form
+    title = request.form.get("title")
+    author = request.form.get("author")
+    genre = request.form.get("genre")
+    priority = request.form.get("priority")
+    length = request.form.get("length")
+    agerange = request.form.get("agerange")
+    type = request.form.get("type")
+    continuing = request.form.get("continuing")
+
+    # creates book instance and adds it to database
+    book = Book(
+        user_id=session["user_id"],
+        title=title,
+        author=author,
+        genre=genre,
+        priority=priority,
+        length=length,
+        agerange=agerange,
+        type=type,
+        continuing=continuing
+    )
+    db.session.add(book)
+    db.session.commit()
+
     return redirect("/")  # takes user back to homepage
