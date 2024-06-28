@@ -11,11 +11,17 @@
 }
 
 /* STYLING FOR THE NEW BOOK FORM */
-#new-book {
+#new-book, #edit-book {
     display: none; /* by default hides the new book form */
     width: 80%;
     margin: auto;
     background-color: beige;
+
+    /* centers the div */
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 div {
