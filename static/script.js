@@ -2,6 +2,18 @@
 const new_book_form = document.querySelector("#new-book");
 const continuing_category = document.querySelector("#book-continuing-cont");
 const edit_book_form = document.querySelector("#edit-book");
+// the following are for the sorting options
+const by_title_a = document.querySelector("#cont-title-a");
+const by_title_z = document.querySelector("#cont-title-z");
+const by_priority_high = document.querySelector("#cont-priority-high");
+const by_priority_low = document.querySelector("#cont-priority-low");
+const by_length_high = document.querySelector("#cont-length-high");
+const by_length_low = document.querySelector("#cont-length-low");
+const cont_author = document.querySelector("#cont-author");
+const cont_genre = document.querySelector("#cont-genre");
+const cont_agerange = document.querySelector("#cont-agerange");
+const cont_type = document.querySelector("#cont-type");
+
 
 // EVENT LISTENERS
 document.addEventListener('DOMContentLoaded', function() {
@@ -10,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // users clicks on add-book
         document.querySelector("#add-book").onclick = function() {
             new_book_form.style.display = "block";  // displays add_book menu
+            console.log(new_book_form.style.display);
             continuing_category.style.display = "none";  // keeps the continuing series hidden until later
         }
 
@@ -159,13 +172,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
     // OTHERS
+        // user selects a sorting option
+        document.querySelector("#select").onchange = function() {
+            document.querySelectorAll(".books-cont").forEach(container => {
+                console.log(this.value);
+                if (container.id === `cont-${this.value}`) {  // if this is the sort type the user picked
+                    container.style.display = "block";
+                }
+                else {
+                    container.style.display = "none";
+                }
+            })
+        }
+
         // user clicks on delete book
         document.querySelectorAll('.delete-book').forEach(book => {
             book.onclick = () => delete_book(book.id); 
         })
 })
-
-
 
 
 // FUNCTIONS

@@ -16,31 +16,25 @@
 {% block main %}
     <!-- SORTING MENU! -->
     <h3>Sort by</h3>
-
-    <p>Title</p>
-    <select id="sort-title-">
-        <option value="title-a">A to Z</option>
-        <option value="title-z">Z to A</option>
-    </select>
-
-    <p>Priority</p>
-    <select id="sort-priority">
-        <option value="priority-high">Highest to lowest</option>
-        <option value="priority-low">Lowers to highest</option>
-    </select>
-
-    <p>Length</p>
-    <select id="sort-library-">
-        <option value="option-high">Longest to shortest</option>
-        <option value="option-low">Shortest to longest</option>
-    </select>
-
-    <p>Others</p>
-    <select id="sort-others-">
-        <option value="others-author">Author</option>
-        <option value="others-genre">Genre</option>
-        <option value="others-old">Age Range</option>
-        <option value="others-type">Type</option>
+    <select id="select">
+        <optgroup label="Title">
+            <option value="title-a">A to Z</option>
+            <option value="title-z">Z to A</option>
+        </optgroup>
+        <optgroup label="Priority">
+            <option value="priority-high">Highest to lowest</option>
+            <option value="priority-low">Lowest to highest</option>
+        </optgroup>
+        <optgroup label="Length">
+            <option value="length-high">Longest to shortest</option>
+            <option value="length-low">Shortest to longest</option>
+        </optgroup>
+        <optgroup label="Others">
+            <option value="others-author">Author</option>
+            <option value="others-genre">Genre</option>
+            <option value="others-agerange">Age Range</option>
+            <option value="others-type">Type</option>
+        </optgroup>
     </select>
 
 
@@ -155,10 +149,11 @@
                 {% endif %}
                 <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
                 <button class="delete-book" id="{{ book.id }}">Delete</button>
+            </div>
         {% endfor %}
     </div>
 
-    <div id="cont-author" class="books-cont">
+    <div id="cont-others-author" class="books-cont">
         {% for book in by_author %}
             <div class="book-div" id="book-div-{{ book.id }}">
                 <p class="book-title">{{ book.title }}</p>
@@ -177,7 +172,7 @@
         {% endfor %}
     </div>
 
-    <div id="cont-genre" class="books-cont">
+    <div id="cont-others-genre" class="books-cont">
         {% for book in by_genre %}
             <div class="book-div" id="book-div-{{ book.id }}">
                 <p class="book-title">{{ book.title }}</p>
@@ -196,7 +191,7 @@
         {% endfor %}
     </div>
 
-    <div id="cont-agerange" class="books-cont">
+    <div id="cont-others-agerange" class="books-cont">
         {% for book in by_agerange %}
             <div class="book-div" id="book-div-{{ book.id }}">
                 <p class="book-title">{{ book.title }}</p>
@@ -215,7 +210,7 @@
         {% endfor %}
     </div>
 
-    <div id="cont-type" class="books-cont">
+    <div id="cont-others-type" class="books-cont">
         {% for book in by_type %}
             <div class="book-div" id="book-div-{{ book.id }}">
                 <p class="book-title">{{ book.title }}</p>

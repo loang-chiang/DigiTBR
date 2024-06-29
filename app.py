@@ -5,7 +5,7 @@ from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy.orm.exc import NoResultFound
-from sqlalchemy import Integer, String, ForeignKey
+from sqlalchemy import Integer, String, ForeignKey, func
 from functools import wraps
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -76,7 +76,7 @@ def login_required(f):  # requires user to have logged in to access certain rout
 @app.route("/")
 @login_required
 def index():  # shows the page index
-    # order the user's books
+    # orders the user's books
     by_title_a = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.title).all()
     by_title_z = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.title.desc()).all()
     by_priority_high = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.priority.desc()).all()
@@ -85,10 +85,15 @@ def index():  # shows the page index
     by_length_low = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.priority).all()
     by_author = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.author).all()
     by_genre = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.genre).all()
-    by_agerange = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.agerange).all()
-    by_type = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.type).all()
 
-    print(db.session.execute(db.select(Book).filter_by(user_id=session["user_id"], id=1)).scalar_one())
+    # creates custom order for agerange and type
+    agerange_order = ["Children's", "Middle Grade", "Young Adult", "Adult", "Not Applicable"]
+    type_order = ["Standalone", "Duology/Trilogy", "Series", "Spin-off"]
+
+    # orders books by agerange and type
+    user_books = db.session.query(Book).filter_by(user_id=session["user_id"]).all()
+    by_agerange = sorted(user_books, key=lambda book: agerange_order.index(book.agerange))
+    by_type = sorted(user_books, key=lambda book: type_order.index(book.type))
 
     return render_template("index.html",
         by_title_a=by_title_a,

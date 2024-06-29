@@ -30,7 +30,13 @@ div {
 
 
 /* STYLING FOR THE TBR COLLECTION */
+.books-cont {  
+    display: none;  /* by fault hides all sorting options */
+}
 
+#cont-title-a {
+    display: block;  /* except for the default one */
+}
 
 
 /* STYLING FOR THE LOGIN/REGISTER TEMPLATES */
