@@ -157,6 +157,12 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             return all_filled;
         }
+
+    // OTHERS
+        // user clicks on delete book
+        document.querySelectorAll('.delete-book').forEach(book => {
+            book.onclick = () => delete_book(book.id); 
+        })
 })
 
 
@@ -258,5 +264,26 @@ function load_edit(book_id) {  // loads the edit book form with all the necessar
         choice("agerange", agerange, form_prefix);
         choice("type", type, form_prefix);
         choice("continuing", continuing, form_prefix);
+    })
+}
+
+
+function delete_book(book_id) {  // deletes the book from the database
+    console.log(`Running delete_book function for book ${book_id}`);
+
+    // sends data to python func
+    fetch('/delete_book', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            book_id: book_id,
+        })
+    })
+    .then(() => {
+        document.querySelectorAll(`#book-div-${book_id}`).forEach(container => {
+            container.remove();
+        })
     })
 }

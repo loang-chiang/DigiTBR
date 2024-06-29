@@ -47,7 +47,7 @@
     <!-- CONTAINERS FOR THE SORTING OPTIONS -->
     <div id="cont-title-a" class="books-cont">
         {% for book in by_title_a %}
-            <div class="book-div">
+            <div class="book-div" id="book-div-{{ book.id }}">
                 <p class="book-title">{{ book.title }}</p>
                 <p class="book-author">{{ book.author }}</p>
                 <p class="book-genre">{{ book.genre }}</p>
@@ -59,13 +59,14 @@
                     <p class="book-continuing">{{ book.continuing }}</p>
                 {% endif %}
                 <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
+                <button class="delete-book" id="{{ book.id }}">Delete</button>
             </div>
         {% endfor %}
     </div>
 
     <div id="cont-title-z" class="books-cont">
         {% for book in by_title_z %}
-            <div class="book-div">
+            <div class="book-div" id="book-div-{{ book.id }}">
                 <p class="book-title">{{ book.title }}</p>
                 <p class="book-author">{{ book.author }}</p>
                 <p class="book-genre">{{ book.genre }}</p>
@@ -77,13 +78,14 @@
                     <p class="book-continuing">{{ book.continuing }}</p>
                 {% endif %}
                 <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
+                <button class="delete-book" id="{{ book.id }}">Delete</button>
             </div>
         {% endfor %}
     </div>
 
     <div id="cont-priority-high" class="books-cont">
         {% for book in by_priority_high %}
-            <div class="book-div">
+            <div class="book-div" id="book-div-{{ book.id }}">
                 <p class="book-title">{{ book.title }}</p>
                 <p class="book-author">{{ book.author }}</p>
                 <p class="book-genre">{{ book.genre }}</p>
@@ -95,13 +97,14 @@
                     <p class="book-continuing">{{ book.continuing }}</p>
                 {% endif %}
                 <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
+                <button class="delete-book" id="{{ book.id }}">Delete</button>
             </div>
         {% endfor %}
     </div>
 
     <div id="cont-priority-low" class="books-cont">
         {% for book in by_priority_low %}
-            <div class="book-div">
+            <div class="book-div" id="book-div-{{ book.id }}">
                 <p class="book-title">{{ book.title }}</p>
                 <p class="book-author">{{ book.author }}</p>
                 <p class="book-genre">{{ book.genre }}</p>
@@ -113,13 +116,14 @@
                     <p class="book-continuing">{{ book.continuing }}</p>
                 {% endif %}
                 <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
+                <button class="delete-book" id="{{ book.id }}">Delete</button>
             </div>
         {% endfor %}
     </div>
 
     <div id="cont-length-high" class="books-cont">
         {% for book in by_length_high %}
-            <div class="book-div">
+            <div class="book-div" id="book-div-{{ book.id }}">
                 <p class="book-title">{{ book.title }}</p>
                 <p class="book-author">{{ book.author }}</p>
                 <p class="book-genre">{{ book.genre }}</p>
@@ -131,13 +135,14 @@
                     <p class="book-continuing">{{ book.continuing }}</p>
                 {% endif %}
                 <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
+                <button class="delete-book" id="{{ book.id }}">Delete</button>
             </div>
         {% endfor %}
     </div>
 
     <div id="cont-length-high" class="books-cont">
         {% for book in by_length_low %}
-            <div class="book-div">
+            <div class="book-div" id="book-div-{{ book.id }}">
                 <p class="book-title">{{ book.title }}</p>
                 <p class="book-author">{{ book.author }}</p>
                 <p class="book-genre">{{ book.genre }}</p>
@@ -149,13 +154,13 @@
                     <p class="book-continuing">{{ book.continuing }}</p>
                 {% endif %}
                 <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
-            </div>
+                <button class="delete-book" id="{{ book.id }}">Delete</button>
         {% endfor %}
     </div>
 
     <div id="cont-author" class="books-cont">
         {% for book in by_author %}
-            <div class="book-div">
+            <div class="book-div" id="book-div-{{ book.id }}">
                 <p class="book-title">{{ book.title }}</p>
                 <p class="book-author">{{ book.author }}</p>
                 <p class="book-genre">{{ book.genre }}</p>
@@ -167,13 +172,14 @@
                     <p class="book-continuing">{{ book.continuing }}</p>
                 {% endif %}
                 <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
+                <button class="delete-book" id="{{ book.id }}">Delete</button>
             </div>
         {% endfor %}
     </div>
 
     <div id="cont-genre" class="books-cont">
         {% for book in by_genre %}
-            <div class="book-div">
+            <div class="book-div" id="book-div-{{ book.id }}">
                 <p class="book-title">{{ book.title }}</p>
                 <p class="book-author">{{ book.author }}</p>
                 <p class="book-genre">{{ book.genre }}</p>
@@ -185,13 +191,14 @@
                     <p class="book-continuing">{{ book.continuing }}</p>
                 {% endif %}
                 <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
+                <button class="delete-book" id="{{ book.id }}">Delete</button>
             </div>
         {% endfor %}
     </div>
 
     <div id="cont-agerange" class="books-cont">
         {% for book in by_agerange %}
-            <div class="book-div">
+            <div class="book-div" id="book-div-{{ book.id }}">
                 <p class="book-title">{{ book.title }}</p>
                 <p class="book-author">{{ book.author }}</p>
                 <p class="book-genre">{{ book.genre }}</p>
@@ -203,13 +210,14 @@
                     <p class="book-continuing">{{ book.continuing }}</p>
                 {% endif %}
                 <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
+                <button class="delete-book" id="{{ book.id }}">Delete</button>
             </div>
         {% endfor %}
     </div>
 
     <div id="cont-type" class="books-cont">
         {% for book in by_type %}
-            <div class="book-div">
+            <div class="book-div" id="book-div-{{ book.id }}">
                 <p class="book-title">{{ book.title }}</p>
                 <p class="book-author">{{ book.author }}</p>
                 <p class="book-genre">{{ book.genre }}</p>
@@ -221,6 +229,7 @@
                     <p class="book-continuing">{{ book.continuing }}</p>
                 {% endif %}
                 <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
+                <button class="delete-book" id="{{ book.id }}">Delete</button>
             </div>
         {% endfor %}
     </div>
@@ -275,7 +284,7 @@
                 <p>Length</p>
                 <div class="option-length" id="length-100less">>100s</div>
                 <div class="option-length" id="length-100s">100s</div>
-                <div class="book-length" id="length-200s">200s</div>
+                <div class="option-length" id="length-200s">200s</div>
                 <div class="option-length" id="length-300s">300s</div>
                 <div class="option-length" id="length-400s">400s</div>
                 <div class="option-length" id="length-500s">500s</div>

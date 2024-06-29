@@ -88,6 +88,8 @@ def index():  # shows the page index
     by_agerange = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.agerange).all()
     by_type = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.type).all()
 
+    print(db.session.execute(db.select(Book).filter_by(user_id=session["user_id"], id=1)).scalar_one())
+
     return render_template("index.html",
         by_title_a=by_title_a,
         by_title_z=by_title_z,
@@ -252,6 +254,21 @@ def edit_book():  # edits a book's data
     book.agerange = agerange
     book.type = type
     book.continuing = continuing
+    db.session.commit()
+
+    return redirect("/")  # takes user back to homepage
+
+
+@app.route("/delete_book", methods=["POST"])
+@login_required
+def delete_book():  # deletes a book from the database
+    # gets info from json file
+    data = request.get_json()
+    book_id = data.get("book_id")
+
+    # deletes book. bye!
+    book = db.session.execute(db.select(Book).filter_by(user_id=session["user_id"], id=book_id)).scalar_one()
+    db.session.delete(book)
     db.session.commit()
 
     return redirect("/")  # takes user back to homepage
