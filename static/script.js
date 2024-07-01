@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll(".books-cont").forEach(container => {
                 console.log(this.value);
                 if (container.id === `cont-${this.value}`) {  // if this is the sort type the user picked
-                    container.style.display = "block";
+                    container.style.display = "flex";
                 }
                 else {
                     container.style.display = "none";

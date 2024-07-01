@@ -2,20 +2,57 @@
 
 
 /* NAVIGATION STYLING */
-#title-and-nav, #nav {
+#title-and-nav, #title-and-icon, #nav {
     display: flex;
+    align-items: center;
 }
 
 #title-and-nav {
+    padding: 10px;
     justify-content: space-between;
+    border-bottom: 10px solid #ECE2D0;
 }
+
+#title-and-nav, #title-and-nav * {
+    background-color: #7A6563;
+}
+
+#title-and-icon {
+    margin-left: 30px;
+}
+
+#app-title {
+    margin: 0px;
+    color: #ECE2D0;
+}
+
+i {
+    font-size: 35px;
+    padding: 10px;
+    color: #ECE2D0;
+}
+
+#nav {
+    margin-right: 30px;
+}
+
+#log-out {
+    margin-left: 10px;
+    font-size: 20px;
+    padding: 10px;
+    padding-top: 14px;
+    color: inherit; /* or any color you want */
+    text-decoration: none;
+    color: #ECE2D0;
+}
+
 
 /* STYLING FOR THE NEW BOOK FORM */
 #new-book, #edit-book {
     display: none; /* by default hides the new book form */
     width: 80%;
     margin: auto;
-    background-color: beige;
+    padding: 10px;
 
     /* centers the div */
     position: absolute;
@@ -24,18 +61,64 @@
     transform: translateX(-50%);
 }
 
-div {
+#new-book div, #edit-book div {
     border: 2px solid black;
+}
+
+#new-book > div, #edit-book > div {
+    padding: 10px;
 }
 
 
 /* STYLING FOR THE TBR COLLECTION */
+#select-cont {
+    display: flex;
+    padding: 10px;
+    padding-left: 30px;
+}
+
+#select {
+    margin-left: 10px;
+}
+
 .books-cont {  
-    display: none;  /* by fault hides all sorting options */
+    display: none;  /* by fault hides all sorting options. it switches to flex */
+    padding: 10px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 #cont-title-a {
-    display: block;  /* except for the default one */
+    display: flex;  /* except for the default one */
+}
+
+.book-div {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 230px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+
+.book-div p {
+    padding: 3px;
+}
+
+#edit-and-delete {
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+#edit-and-delete button {
+    border-radius: 7px;
+}
+
+
+.book-title {
+    text-align: center;
 }
 
 
@@ -44,5 +127,14 @@ div {
 
 
 /* GENERAL STYLING */
+p, h3 {
+    margin-bottom: 0px;
+}
 
+hr {
+    margin: 10px;
+}
 
+html, * {
+    background-color: #ECE2D0;
+}

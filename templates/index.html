@@ -7,7 +7,7 @@
 {% block nav %}
     <div id="nav">
         <div id="add-book">
-            <p>Add a book</p>  <!-- placeholder -->
+            <i class="bi bi-plus-circle"></i>
         </div>
         <a id="log-out" href="/logout">Log out</a>
     </div>
@@ -15,45 +15,51 @@
 
 {% block main %}
     <!-- SORTING MENU! -->
-    <h3>Sort by</h3>
-    <select id="select">
-        <optgroup label="Title">
-            <option value="title-a">A to Z</option>
-            <option value="title-z">Z to A</option>
-        </optgroup>
-        <optgroup label="Priority">
-            <option value="priority-high">Highest to lowest</option>
-            <option value="priority-low">Lowest to highest</option>
-        </optgroup>
-        <optgroup label="Length">
-            <option value="length-high">Longest to shortest</option>
-            <option value="length-low">Shortest to longest</option>
-        </optgroup>
-        <optgroup label="Others">
-            <option value="others-author">Author</option>
-            <option value="others-genre">Genre</option>
-            <option value="others-agerange">Age Range</option>
-            <option value="others-type">Type</option>
-        </optgroup>
-    </select>
+    <div id="select-cont">
+        <h3>Sort by</h3>
+        <select id="select">
+            <optgroup label="Title">
+                <option value="title-a">A to Z</option>
+                <option value="title-z">Z to A</option>
+            </optgroup>
+            <optgroup label="Priority">
+                <option value="priority-high">Highest to lowest</option>
+                <option value="priority-low">Lowest to highest</option>
+            </optgroup>
+            <optgroup label="Length">
+                <option value="length-high">Longest to shortest</option>
+                <option value="length-low">Shortest to longest</option>
+            </optgroup>
+            <optgroup label="Others">
+                <option value="others-author">Author</option>
+                <option value="others-genre">Genre</option>
+                <option value="others-agerange">Age Range</option>
+                <option value="others-type">Type</option>
+            </optgroup>
+        </select>
+    </div>
 
+    <hr>
 
     <!-- CONTAINERS FOR THE SORTING OPTIONS -->
     <div id="cont-title-a" class="books-cont">
         {% for book in by_title_a %}
             <div class="book-div" id="book-div-{{ book.id }}">
-                <p class="book-title">{{ book.title }}</p>
-                <p class="book-author">{{ book.author }}</p>
-                <p class="book-genre">{{ book.genre }}</p>
-                <p class="book-priority">{{ book.priority }}</p>
-                <p class="book-length">{{ book.length }}</p>
-                <p class="book-agerange">{{ book.agerange }}</p>
-                <p class="book-type">{{ book.type }}</p>
+                <h3 class="book-title">{{ book.title }}</h3>
+                <hr>
+                <p class="book-author"><b>By: </b>{{ book.author }}</p>
+                <p class="book-genre"><b>Genre: </b>{{ book.genre }}</p>
+                <p class="book-priority"><b>Priority: </b>{{ book.priority }}</p>
+                <p class="book-length"><b>Length: </b>{{ book.length }}</p>
+                <p class="book-agerange"><b>Age range: </b>{{ book.agerange }}</p>
+                <p class="book-type"><b>Type: </b>{{ book.type }}</p>
                 {% if book.continuing %}
-                    <p class="book-continuing">{{ book.continuing }}</p>
+                    <p class="book-continuing"><b>{{ book.continuing }}</b></p>
                 {% endif %}
-                <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
-                <button class="delete-book" id="{{ book.id }}">Delete</button>
+                <div id="edit-and-delete">
+                    <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
+                    <button class="delete-book" id="{{ book.id }}">Delete</button>
+                </div>
             </div>
         {% endfor %}
     </div>
@@ -71,8 +77,10 @@
                 {% if book.continuing %}
                     <p class="book-continuing">{{ book.continuing }}</p>
                 {% endif %}
-                <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
-                <button class="delete-book" id="{{ book.id }}">Delete</button>
+                <div id="edit-and-delete">
+                    <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
+                    <button class="delete-book" id="{{ book.id }}">Delete</button>
+                </div>
             </div>
         {% endfor %}
     </div>
@@ -90,8 +98,10 @@
                 {% if book.continuing %}
                     <p class="book-continuing">{{ book.continuing }}</p>
                 {% endif %}
-                <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
-                <button class="delete-book" id="{{ book.id }}">Delete</button>
+                <div id="edit-and-delete">
+                    <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
+                    <button class="delete-book" id="{{ book.id }}">Delete</button>
+                </div>
             </div>
         {% endfor %}
     </div>
@@ -109,8 +119,10 @@
                 {% if book.continuing %}
                     <p class="book-continuing">{{ book.continuing }}</p>
                 {% endif %}
-                <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
-                <button class="delete-book" id="{{ book.id }}">Delete</button>
+                <div id="edit-and-delete">
+                    <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
+                    <button class="delete-book" id="{{ book.id }}">Delete</button>
+                </div>
             </div>
         {% endfor %}
     </div>
@@ -128,8 +140,10 @@
                 {% if book.continuing %}
                     <p class="book-continuing">{{ book.continuing }}</p>
                 {% endif %}
-                <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
-                <button class="delete-book" id="{{ book.id }}">Delete</button>
+                <div id="edit-and-delete">
+                    <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
+                    <button class="delete-book" id="{{ book.id }}">Delete</button>
+                </div>
             </div>
         {% endfor %}
     </div>
@@ -147,8 +161,10 @@
                 {% if book.continuing %}
                     <p class="book-continuing">{{ book.continuing }}</p>
                 {% endif %}
-                <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
-                <button class="delete-book" id="{{ book.id }}">Delete</button>
+                <div id="edit-and-delete">
+                    <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
+                    <button class="delete-book" id="{{ book.id }}">Delete</button>
+                </div>
             </div>
         {% endfor %}
     </div>
@@ -166,8 +182,10 @@
                 {% if book.continuing %}
                     <p class="book-continuing">{{ book.continuing }}</p>
                 {% endif %}
-                <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
-                <button class="delete-book" id="{{ book.id }}">Delete</button>
+                <div id="edit-and-delete">
+                    <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
+                    <button class="delete-book" id="{{ book.id }}">Delete</button>
+                </div>
             </div>
         {% endfor %}
     </div>
@@ -185,8 +203,10 @@
                 {% if book.continuing %}
                     <p class="book-continuing">{{ book.continuing }}</p>
                 {% endif %}
-                <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
-                <button class="delete-book" id="{{ book.id }}">Delete</button>
+                <div id="edit-and-delete">
+                    <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
+                    <button class="delete-book" id="{{ book.id }}">Delete</button>
+                </div>
             </div>
         {% endfor %}
     </div>
@@ -204,8 +224,10 @@
                 {% if book.continuing %}
                     <p class="book-continuing">{{ book.continuing }}</p>
                 {% endif %}
-                <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
-                <button class="delete-book" id="{{ book.id }}">Delete</button>
+                <div id="edit-and-delete">
+                    <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
+                    <button class="delete-book" id="{{ book.id }}">Delete</button>
+                </div>
             </div>
         {% endfor %}
     </div>
@@ -223,8 +245,10 @@
                 {% if book.continuing %}
                     <p class="book-continuing">{{ book.continuing }}</p>
                 {% endif %}
-                <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
-                <button class="delete-book" id="{{ book.id }}">Delete</button>
+                <div id="edit-and-delete">
+                    <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
+                    <button class="delete-book" id="{{ book.id }}">Delete</button>
+                </div>
             </div>
         {% endfor %}
     </div>
