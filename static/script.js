@@ -1,7 +1,9 @@
 // GLOBAL VARIABLES
 const new_book_form = document.querySelector("#new-book");
-const continuing_category = document.querySelector("#book-continuing-cont");
+const continuing_category = document.querySelectorAll(".book-continuing-cont")[0];
+const edit_continuing_category = document.querySelectorAll(".book-continuing-cont")[1];
 const edit_book_form = document.querySelector("#edit-book");
+const backdrop = document.querySelector("#backdrop");
 // the following are for the sorting options
 const by_title_a = document.querySelector("#cont-title-a");
 const by_title_z = document.querySelector("#cont-title-z");
@@ -22,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // users clicks on add-book
         document.querySelector("#add-book").onclick = function() {
             new_book_form.style.display = "block";  // displays add_book menu
-            console.log(new_book_form.style.display);
+            backdrop.style.display = "block"  // shows backdrop
             continuing_category.style.display = "none";  // keeps the continuing series hidden until later
         }
 
@@ -92,6 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector("#exit-form").onclick = function() {
             clean_form();
             new_book_form.style.display = "none";
+            backdrop.style.display = "none"
         }
 
     // FOR EDIT BOOK FORM
@@ -100,6 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
             book.onclick = function() {
                 load_edit(book.id);
                 edit_book_form.style.display = "block";  // displays edit book menu
+                backdrop.style.display = "block"  // and backdrop
             }
         })
 
@@ -126,21 +130,21 @@ document.addEventListener('DOMContentLoaded', function() {
         // user clicks on book type
         document.querySelectorAll(".edit-option-type").forEach(option => {
             option.onclick = function() {
-                choice("type", option);
+                choice("type", option, "edit-");
                 if (option.textContent === "Duology/Trilogy" || option.textContent === "Series") {
                     if (!option.classList.contains("chosen")) {  // if clicking a second time, aka unchoosing
-                        continuing_category.style.display = "none";
+                        edit_continuing_category.style.display = "none";
 
                         document.querySelectorAll(".edit-option-continuing").forEach(choice => {
                             eliminate_choice("continuing", choice, "edit-")  // eliminates the choices inside continuing
                         })
                     }
                     else {
-                        continuing_category.style.display = "block";  // displays continuing category if series
+                        edit_continuing_category.style.display = "block";  // displays continuing category if series
                     }
                 }
                 else {
-                    continuing_category.style.display = "none";  // hides continuing category if not series
+                    edit_continuing_category.style.display = "none";  // hides continuing category if not series
 
                     document.querySelectorAll(".edit-option-continuing").forEach(choice => {
                         eliminate_choice("continuing", choice, "edit-")  // eliminates the choices inside continuing
@@ -150,14 +154,15 @@ document.addEventListener('DOMContentLoaded', function() {
         })
 
         // user clicks on book continuing option
-        document.querySelectorAll(".option-continuing").forEach(option => {
-            option.onclick = () => choice("continuing", option);
+        document.querySelectorAll(".edit-option-continuing").forEach(option => {
+            option.onclick = () => choice("continuing", option, "edit-");
         })
 
         // user clicks the x button without having submitted the edit book form
         document.querySelector("#edit-exit-form").onclick = function() {
             clean_form("edit-");  // argument targets the edit book form specifically
             edit_book_form.style.display = "none";
+            backdrop.style.display = "none"
         }
 
         // user clicks submit on the edit book form
@@ -175,7 +180,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // user selects a sorting option
         document.querySelector("#select").onchange = function() {
             document.querySelectorAll(".books-cont").forEach(container => {
-                console.log(this.value);
                 if (container.id === `cont-${this.value}`) {  // if this is the sort type the user picked
                     container.style.display = "flex";
                 }
@@ -191,7 +195,6 @@ document.addEventListener('DOMContentLoaded', function() {
         })
 })
 
-
 // FUNCTIONS
 function choice(category, option, form_prefix = "") {  // runs when a user chooses an option
     console.log(`Running choice function for category ${category} and option ${option.textContent}`);
@@ -202,25 +205,23 @@ function choice(category, option, form_prefix = "") {  // runs when a user choos
         eliminate_choice(category, option, form_prefix);
     }
     else {
-        document.querySelectorAll(`.option-${category}`).forEach(choice => {
+        document.querySelectorAll(`.${form_prefix}option-${category}`).forEach(choice => {
             if (choice !== option && choice.classList.contains("chosen")) {
                 eliminate_choice(category, choice, form_prefix);  // eliminate all other choices
             }
         })
 
         document.querySelector(`#${form_prefix}${category}`).value = choiceName;  // adds choice to hidden input so the backend can read it
-        option.classList.add("chosen");
-        option.style.backgroundColor = "red";  // styling to show it's been chosen
+        option.classList.add("chosen");  // the class has styling to show it's been picked
     }
 }
 
 
 function eliminate_choice(category, option, form_prefix = "") {  // eliminates choice!
-    console.log(`Running eliminate_choice function for option ${option.textContent}`);
+    console.log(`Running eliminate_choice function for option ${option.textContent}. Prefix: ${form_prefix}`);
     
     document.querySelector(`#${form_prefix}${category}`).value = "";  // empties the value of the choice so it won't go to the backend
     option.classList.remove("chosen");
-    option.style.backgroundColor = "beige";  // styling to reflect it's been unchosen
 }
 
 
@@ -234,9 +235,9 @@ function clean_form(form_prefix = "") {  // cleans the info for the new book for
     // cleans the div inputs
     let categories = [`title`, `genre`, `author`, `priority`, `length`, `agerange`, `type`, `continuing`];
     for (let category of categories) {
-        if (document.querySelector(`#${form_prefix}${category}`).value !== "") {  // only empties the filled categories
-            console.log()
-            document.querySelectorAll(`.option-${category}`).forEach(option => {
+        let categoryChoice = document.querySelector(`#${form_prefix}${category}`).value
+        if (categoryChoice !== "") {  // only empties the filled categories
+            document.querySelectorAll(`.${form_prefix}option-${category}`).forEach(option => {
                 eliminate_choice(category, option, form_prefix);
             })
         }
@@ -266,16 +267,17 @@ function load_edit(book_id) {  // loads the edit book form with all the necessar
         document.querySelector("#edit-title").value = response["title"];
         document.querySelector("#edit-author").value = response["author"];
 
-        // these placeholders are needed or the code won't understand spaces or slashes
+        // these placeholders are needed or the code won't understand certain symbols
         let genre_temp = response["genre"].replace(' ', '-');
-        let agerange_temp = response["agerange"].replace(' ', '-');
-        let type_temp = response["type"].replace('/', '\\/');  
+        let length_temp = response["length"].replace('+', '\\+').replace("<", "\\3C ");
+        let agerange_temp = response["agerange"].replace(' ', '-').replace("'", "\\'");
+        let type_temp = response["type"].replace('/', '\\/');
         let continuing_temp = response["continuing"].replace(' ', '-');
 
         // gets the divs the user originally chose
         let genre = document.querySelector(`#edit-genre-${genre_temp}`);
         let priority = document.querySelector(`#edit-priority-${response["priority"]}`);
-        let length = document.querySelector(`#edit-length-${response["length"]}`);
+        let length = document.querySelector(`#edit-length-${length_temp}`);
         let agerange = document.querySelector(`#edit-agerange-${agerange_temp}`);
         let type = document.querySelector(`#edit-type-${type_temp}`);
         let continuing = document.querySelector(`#edit-continuing-${continuing_temp}`);

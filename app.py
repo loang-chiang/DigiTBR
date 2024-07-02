@@ -54,8 +54,7 @@ with app.app_context():
     db.create_all()
 
 
-# LOGIN AND LOGOUT FUNCTIONS
-
+# SETUP FUNCTIONS
 @app.after_request
 def after_request(response):  # disables caching of the response
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
@@ -73,25 +72,28 @@ def login_required(f):  # requires user to have logged in to access certain rout
     return decorated_function
 
 
+# OUR FUNCTIONS
 @app.route("/")
 @login_required
 def index():  # shows the page index
     # orders the user's books
     by_title_a = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.title).all()
-    by_title_z = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.title.desc()).all()
+    by_title_z = by_title_a[::-1]  # reverses by_title_a
     by_priority_high = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.priority.desc()).all()
-    by_priority_low = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.priority).all() 
-    by_length_high = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.priority.desc()).all()
-    by_length_low = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.priority).all()
+    by_priority_low = by_priority_high[::-1]  # reverses by_priority_high
     by_author = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.author).all()
     by_genre = db.session.query(Book).filter_by(user_id=session["user_id"]).order_by(Book.genre).all()
 
     # creates custom order for agerange and type
+    length_order = ["<100", "100s", "200s", "300s", "400s", "500s", "600s", "700+"]
     agerange_order = ["Children's", "Middle Grade", "Young Adult", "Adult", "Not Applicable"]
     type_order = ["Standalone", "Duology/Trilogy", "Series", "Spin-off"]
 
     # orders books by agerange and type
     user_books = db.session.query(Book).filter_by(user_id=session["user_id"]).all()
+
+    by_length_low = sorted(user_books, key=lambda book: length_order.index(book.length))
+    by_length_high = by_length_low[::-1]  # reverses by_length_low 
     by_agerange = sorted(user_books, key=lambda book: agerange_order.index(book.agerange))
     by_type = sorted(user_books, key=lambda book: type_order.index(book.type))
 
@@ -108,79 +110,6 @@ def index():  # shows the page index
         by_type=by_type,
     )
 
-
-@app.route("/register", methods=["GET", "POST"])
-def register():  # registers new users
-    if request.method == "POST":
-        if not request.form.get("username"):
-            return render_template("error.html", message="Must provide username")
-        elif not request.form.get("password"):
-            return render_template("error.html", message="Must provide password")
-        elif not request.form.get("confirmation"):
-            return render_template("error.html", message="Must provide password a second time")
-        elif request.form.get("password") != request.form.get("confirmation"):
-            return render_template("error.html", message="Passwords do not match")
-
-        # queries database to check if username already exists
-        username = request.form.get("username")
-        print(username)
-        users = list(db.session.execute(db.select(User).filter_by(username=username)).scalars())
-        if len(users) > 0:
-            return render_template("error.html", message="Username already exists")
-
-        # inserts new user into the database
-        hashed_password = generate_password_hash(request.form.get("password"))
-        user = User(
-            username=username,
-            hash=hashed_password
-        )
-        db.session.add(user)
-        db.session.commit()
-
-        # gets user back to login page
-        return redirect("/login")
-
-    else:
-        return render_template("register.html")
-
-
-@app.route("/login", methods=["GET", "POST"])
-def login():  # logs users in
-    session.clear()  # forgets any user_id
-
-    if request.method == "POST":
-        if not request.form.get("username"):  # check if username was submitted
-            return render_template("error.html", message="Must provide username")
-        elif not request.form.get("password"):  # check if password was submitted
-            return render_template("error.html", message="Must provide password")
-
-        # queries database for username
-        username = request.form.get("username")
-
-        try:
-            user = db.session.execute(db.select(User).filter_by(username=username)).scalar_one()
-        except NoResultFound:
-            return render_template("error.html", message="Invalid username and/or password")
-
-        # checks if username exists and password are correct
-        if not user or not check_password_hash(user.hash, request.form.get("password")):
-            return render_template("error.html", message="Invalid username and/or password")
-
-        session["user_id"] = user.id  # remembers which user has logged in
-        return redirect("/")
-
-    else:
-        return render_template("login.html")
-
-
-@app.route("/logout")
-@login_required
-def logout():  # allows the user to log out of their account
-    session.clear()
-    return redirect("/")
-
-
-# OTHER FUNCTIONS
 
 @app.route("/new_book", methods=["POST"]) 
 @login_required
@@ -248,8 +177,6 @@ def edit_book():  # edits a book's data
     type = request.form.get("edit-type")
     continuing = request.form.get("edit-continuing")
 
-    print(length)
-
     book = db.session.execute(db.select(Book).filter_by(user_id=session["user_id"], id=book_id)).scalar_one()
     book.title = title
     book.author = author
@@ -277,3 +204,74 @@ def delete_book():  # deletes a book from the database
     db.session.commit()
 
     return redirect("/")  # takes user back to homepage
+
+
+# LOGIN AND LOGOUT FUNCTIONS
+@app.route("/register", methods=["GET", "POST"])
+def register():  # registers new users
+    if request.method == "POST":
+        if not request.form.get("username"):
+            return render_template("error.html", message="Must provide username")
+        elif not request.form.get("password"):
+            return render_template("error.html", message="Must provide password")
+        elif not request.form.get("confirmation"):
+            return render_template("error.html", message="Must provide password a second time")
+        elif request.form.get("password") != request.form.get("confirmation"):
+            return render_template("error.html", message="Passwords do not match")
+
+        # queries database to check if username already exists
+        username = request.form.get("username")
+        users = list(db.session.execute(db.select(User).filter_by(username=username)).scalars())
+        if len(users) > 0:
+            return render_template("error.html", message="Username already exists")
+
+        # inserts new user into the database
+        hashed_password = generate_password_hash(request.form.get("password"))
+        user = User(
+            username=username,
+            hash=hashed_password
+        )
+        db.session.add(user)
+        db.session.commit()
+
+        # gets user back to login page
+        return redirect("/login")
+
+    else:
+        return render_template("register.html")
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():  # logs users in
+    session.clear()  # forgets any user_id
+
+    if request.method == "POST":
+        if not request.form.get("username"):  # check if username was submitted
+            return render_template("error.html", message="Must provide username")
+        elif not request.form.get("password"):  # check if password was submitted
+            return render_template("error.html", message="Must provide password")
+
+        # queries database for username
+        username = request.form.get("username")
+
+        try:
+            user = db.session.execute(db.select(User).filter_by(username=username)).scalar_one()
+        except NoResultFound:
+            return render_template("error.html", message="Invalid username and/or password")
+
+        # checks if username exists and password are correct
+        if not user or not check_password_hash(user.hash, request.form.get("password")):
+            return render_template("error.html", message="Invalid username and/or password")
+
+        session["user_id"] = user.id  # remembers which user has logged in
+        return redirect("/")
+
+    else:
+        return render_template("login.html")
+
+
+@app.route("/logout")
+@login_required
+def logout():  # allows the user to log out of their account
+    session.clear()
+    return redirect("/")

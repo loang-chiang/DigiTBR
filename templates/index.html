@@ -67,15 +67,16 @@
     <div id="cont-title-z" class="books-cont">
         {% for book in by_title_z %}
             <div class="book-div" id="book-div-{{ book.id }}">
-                <p class="book-title">{{ book.title }}</p>
-                <p class="book-author">{{ book.author }}</p>
-                <p class="book-genre">{{ book.genre }}</p>
-                <p class="book-priority">{{ book.priority }}</p>
-                <p class="book-length">{{ book.length }}</p>
-                <p class="book-agerange">{{ book.agerange }}</p>
-                <p class="book-type">{{ book.type }}</p>
+                <h3 class="book-title">{{ book.title }}</h3>
+                <hr>
+                <p class="book-author"><b>By: </b>{{ book.author }}</p>
+                <p class="book-genre"><b>Genre: </b>{{ book.genre }}</p>
+                <p class="book-priority"><b>Priority: </b>{{ book.priority }}</p>
+                <p class="book-length"><b>Length: </b>{{ book.length }}</p>
+                <p class="book-agerange"><b>Age range: </b>{{ book.agerange }}</p>
+                <p class="book-type"><b>Type: </b>{{ book.type }}</p>
                 {% if book.continuing %}
-                    <p class="book-continuing">{{ book.continuing }}</p>
+                    <p class="book-continuing"><b>{{ book.continuing }}</b></p>
                 {% endif %}
                 <div id="edit-and-delete">
                     <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
@@ -88,15 +89,16 @@
     <div id="cont-priority-high" class="books-cont">
         {% for book in by_priority_high %}
             <div class="book-div" id="book-div-{{ book.id }}">
-                <p class="book-title">{{ book.title }}</p>
-                <p class="book-author">{{ book.author }}</p>
-                <p class="book-genre">{{ book.genre }}</p>
-                <p class="book-priority">{{ book.priority }}</p>
-                <p class="book-length">{{ book.length }}</p>
-                <p class="book-agerange">{{ book.agerange }}</p>
-                <p class="book-type">{{ book.type }}</p>
+                <h3 class="book-title">{{ book.title }}</h3>
+                <hr>
+                <p class="book-author"><b>By: </b>{{ book.author }}</p>
+                <p class="book-genre"><b>Genre: </b>{{ book.genre }}</p>
+                <p class="book-priority"><b>Priority: </b>{{ book.priority }}</p>
+                <p class="book-length"><b>Length: </b>{{ book.length }}</p>
+                <p class="book-agerange"><b>Age range: </b>{{ book.agerange }}</p>
+                <p class="book-type"><b>Type: </b>{{ book.type }}</p>
                 {% if book.continuing %}
-                    <p class="book-continuing">{{ book.continuing }}</p>
+                    <p class="book-continuing"><b>{{ book.continuing }}</b></p>
                 {% endif %}
                 <div id="edit-and-delete">
                     <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
@@ -109,15 +111,16 @@
     <div id="cont-priority-low" class="books-cont">
         {% for book in by_priority_low %}
             <div class="book-div" id="book-div-{{ book.id }}">
-                <p class="book-title">{{ book.title }}</p>
-                <p class="book-author">{{ book.author }}</p>
-                <p class="book-genre">{{ book.genre }}</p>
-                <p class="book-priority">{{ book.priority }}</p>
-                <p class="book-length">{{ book.length }}</p>
-                <p class="book-agerange">{{ book.agerange }}</p>
-                <p class="book-type">{{ book.type }}</p>
+                <h3 class="book-title">{{ book.title }}</h3>
+                <hr>
+                <p class="book-author"><b>By: </b>{{ book.author }}</p>
+                <p class="book-genre"><b>Genre: </b>{{ book.genre }}</p>
+                <p class="book-priority"><b>Priority: </b>{{ book.priority }}</p>
+                <p class="book-length"><b>Length: </b>{{ book.length }}</p>
+                <p class="book-agerange"><b>Age range: </b>{{ book.agerange }}</p>
+                <p class="book-type"><b>Type: </b>{{ book.type }}</p>
                 {% if book.continuing %}
-                    <p class="book-continuing">{{ book.continuing }}</p>
+                    <p class="book-continuing"><b>{{ book.continuing }}</b></p>
                 {% endif %}
                 <div id="edit-and-delete">
                     <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
@@ -130,15 +133,16 @@
     <div id="cont-length-high" class="books-cont">
         {% for book in by_length_high %}
             <div class="book-div" id="book-div-{{ book.id }}">
-                <p class="book-title">{{ book.title }}</p>
-                <p class="book-author">{{ book.author }}</p>
-                <p class="book-genre">{{ book.genre }}</p>
-                <p class="book-priority">{{ book.priority }}</p>
-                <p class="book-length">{{ book.length }}</p>
-                <p class="book-agerange">{{ book.agerange }}</p>
-                <p class="book-type">{{ book.type }}</p>
+                <h3 class="book-title">{{ book.title }}</h3>
+                <hr>
+                <p class="book-author"><b>By: </b>{{ book.author }}</p>
+                <p class="book-genre"><b>Genre: </b>{{ book.genre }}</p>
+                <p class="book-priority"><b>Priority: </b>{{ book.priority }}</p>
+                <p class="book-length"><b>Length: </b>{{ book.length }}</p>
+                <p class="book-agerange"><b>Age range: </b>{{ book.agerange }}</p>
+                <p class="book-type"><b>Type: </b>{{ book.type }}</p>
                 {% if book.continuing %}
-                    <p class="book-continuing">{{ book.continuing }}</p>
+                    <p class="book-continuing"><b>{{ book.continuing }}</b></p>
                 {% endif %}
                 <div id="edit-and-delete">
                     <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
@@ -148,18 +152,19 @@
         {% endfor %}
     </div>
 
-    <div id="cont-length-high" class="books-cont">
+    <div id="cont-length-low" class="books-cont">
         {% for book in by_length_low %}
             <div class="book-div" id="book-div-{{ book.id }}">
-                <p class="book-title">{{ book.title }}</p>
-                <p class="book-author">{{ book.author }}</p>
-                <p class="book-genre">{{ book.genre }}</p>
-                <p class="book-priority">{{ book.priority }}</p>
-                <p class="book-length">{{ book.length }}</p>
-                <p class="book-agerange">{{ book.agerange }}</p>
-                <p class="book-type">{{ book.type }}</p>
+                <h3 class="book-title">{{ book.title }}</h3>
+                <hr>
+                <p class="book-author"><b>By: </b>{{ book.author }}</p>
+                <p class="book-genre"><b>Genre: </b>{{ book.genre }}</p>
+                <p class="book-priority"><b>Priority: </b>{{ book.priority }}</p>
+                <p class="book-length"><b>Length: </b>{{ book.length }}</p>
+                <p class="book-agerange"><b>Age range: </b>{{ book.agerange }}</p>
+                <p class="book-type"><b>Type: </b>{{ book.type }}</p>
                 {% if book.continuing %}
-                    <p class="book-continuing">{{ book.continuing }}</p>
+                    <p class="book-continuing"><b>{{ book.continuing }}</b></p>
                 {% endif %}
                 <div id="edit-and-delete">
                     <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
@@ -172,15 +177,16 @@
     <div id="cont-others-author" class="books-cont">
         {% for book in by_author %}
             <div class="book-div" id="book-div-{{ book.id }}">
-                <p class="book-title">{{ book.title }}</p>
-                <p class="book-author">{{ book.author }}</p>
-                <p class="book-genre">{{ book.genre }}</p>
-                <p class="book-priority">{{ book.priority }}</p>
-                <p class="book-length">{{ book.length }}</p>
-                <p class="book-agerange">{{ book.agerange }}</p>
-                <p class="book-type">{{ book.type }}</p>
+                <h3 class="book-title">{{ book.title }}</h3>
+                <hr>
+                <p class="book-author"><b>By: </b>{{ book.author }}</p>
+                <p class="book-genre"><b>Genre: </b>{{ book.genre }}</p>
+                <p class="book-priority"><b>Priority: </b>{{ book.priority }}</p>
+                <p class="book-length"><b>Length: </b>{{ book.length }}</p>
+                <p class="book-agerange"><b>Age range: </b>{{ book.agerange }}</p>
+                <p class="book-type"><b>Type: </b>{{ book.type }}</p>
                 {% if book.continuing %}
-                    <p class="book-continuing">{{ book.continuing }}</p>
+                    <p class="book-continuing"><b>{{ book.continuing }}</b></p>
                 {% endif %}
                 <div id="edit-and-delete">
                     <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
@@ -193,15 +199,16 @@
     <div id="cont-others-genre" class="books-cont">
         {% for book in by_genre %}
             <div class="book-div" id="book-div-{{ book.id }}">
-                <p class="book-title">{{ book.title }}</p>
-                <p class="book-author">{{ book.author }}</p>
-                <p class="book-genre">{{ book.genre }}</p>
-                <p class="book-priority">{{ book.priority }}</p>
-                <p class="book-length">{{ book.length }}</p>
-                <p class="book-agerange">{{ book.agerange }}</p>
-                <p class="book-type">{{ book.type }}</p>
+                <h3 class="book-title">{{ book.title }}</h3>
+                <hr>
+                <p class="book-author"><b>By: </b>{{ book.author }}</p>
+                <p class="book-genre"><b>Genre: </b>{{ book.genre }}</p>
+                <p class="book-priority"><b>Priority: </b>{{ book.priority }}</p>
+                <p class="book-length"><b>Length: </b>{{ book.length }}</p>
+                <p class="book-agerange"><b>Age range: </b>{{ book.agerange }}</p>
+                <p class="book-type"><b>Type: </b>{{ book.type }}</p>
                 {% if book.continuing %}
-                    <p class="book-continuing">{{ book.continuing }}</p>
+                    <p class="book-continuing"><b>{{ book.continuing }}</b></p>
                 {% endif %}
                 <div id="edit-and-delete">
                     <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
@@ -214,15 +221,16 @@
     <div id="cont-others-agerange" class="books-cont">
         {% for book in by_agerange %}
             <div class="book-div" id="book-div-{{ book.id }}">
-                <p class="book-title">{{ book.title }}</p>
-                <p class="book-author">{{ book.author }}</p>
-                <p class="book-genre">{{ book.genre }}</p>
-                <p class="book-priority">{{ book.priority }}</p>
-                <p class="book-length">{{ book.length }}</p>
-                <p class="book-agerange">{{ book.agerange }}</p>
-                <p class="book-type">{{ book.type }}</p>
+                <h3 class="book-title">{{ book.title }}</h3>
+                <hr>
+                <p class="book-author"><b>By: </b>{{ book.author }}</p>
+                <p class="book-genre"><b>Genre: </b>{{ book.genre }}</p>
+                <p class="book-priority"><b>Priority: </b>{{ book.priority }}</p>
+                <p class="book-length"><b>Length: </b>{{ book.length }}</p>
+                <p class="book-agerange"><b>Age range: </b>{{ book.agerange }}</p>
+                <p class="book-type"><b>Type: </b>{{ book.type }}</p>
                 {% if book.continuing %}
-                    <p class="book-continuing">{{ book.continuing }}</p>
+                    <p class="book-continuing"><b>{{ book.continuing }}</b></p>
                 {% endif %}
                 <div id="edit-and-delete">
                     <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
@@ -235,15 +243,16 @@
     <div id="cont-others-type" class="books-cont">
         {% for book in by_type %}
             <div class="book-div" id="book-div-{{ book.id }}">
-                <p class="book-title">{{ book.title }}</p>
-                <p class="book-author">{{ book.author }}</p>
-                <p class="book-genre">{{ book.genre }}</p>
-                <p class="book-priority">{{ book.priority }}</p>
-                <p class="book-length">{{ book.length }}</p>
-                <p class="book-agerange">{{ book.agerange }}</p>
-                <p class="book-type">{{ book.type }}</p>
+                <h3 class="book-title">{{ book.title }}</h3>
+                <hr>
+                <p class="book-author"><b>By: </b>{{ book.author }}</p>
+                <p class="book-genre"><b>Genre: </b>{{ book.genre }}</p>
+                <p class="book-priority"><b>Priority: </b>{{ book.priority }}</p>
+                <p class="book-length"><b>Length: </b>{{ book.length }}</p>
+                <p class="book-agerange"><b>Age range: </b>{{ book.agerange }}</p>
+                <p class="book-type"><b>Type: </b>{{ book.type }}</p>
                 {% if book.continuing %}
-                    <p class="book-continuing">{{ book.continuing }}</p>
+                    <p class="book-continuing"><b>{{ book.continuing }}</b></p>
                 {% endif %}
                 <div id="edit-and-delete">
                     <button class="edit-book" id="{{ book.id }}">Edit</button>  <!-- the id is used so we know which book we're editing -->
@@ -260,83 +269,96 @@
 
             <div id="title-and-exit">
                 <h3>Add a book!</h3>
-                <button type="button" id="exit-form">X</button>
+                <button type="button" id="exit-form">x</button>
             </div>
 
+            <hr>
+
             <div id="book-title-cont">
-                <label for="title">Title</label>
-                <input required id="title" name="title" type="text">
+                <label for="title"><b>Title</b></label>
+                <input required class="text-input" id="title" name="title" type="text">
             </div>
 
             <div id="book-author-cont">
-                <label for="author">Author</label>
-                <input required id="author" name="author" type="text">
+                <label for="author"><b>Author</b></label>
+                <input required class="text-input" id="author" name="author" type="text">
+            </div>
+
+            <div id="book-priority-cont">
+                <p><b>Priority</b></p>
+                <div class="options-cont">
+                    <div class="option-priority" id="priority-1">1</div>
+                    <div class="option-priority" id="priority-2">2</div>
+                    <div class="option-priority" id="priority-3">3</div>
+                    <div class="option-priority" id="priority-4">4</div>
+                    <div class="option-priority" id="priority-5">5</div>
+                    <input class="required-category" type="hidden" id="priority" name="priority">  <!-- with js puts the priority level here -->
+                </div>
             </div>
 
             <div id="book-genre-cont">
-                <p>Genre</p>
-                <div class="option-genre" id="genre-fantasy">Fantasy</div>
-                <div class="option-genre" id="genre-scifi">Science Fiction</div>
-                <div class="option-genre" id="genre-romance">Romance</div>
-                <div class="option-genre" id="genre-mystery">Mystery</div>
-                <div class="option-genre" id="genre-contemporary">Contemporary</div>
-                <div class="option-genre" id="genre-litfic">Literary Fiction</div>
-                <div class="option-genre" id="genre-horror">Horror</div>
-                <div class="option-genre" id="genre-nonfiction">Non Fiction</div>
-                <div class="option-genre" id="genre-childrens">Children's</div>
-                <div class="option-genre" id="genre-graphicnovel">Graphic Novel</div>
-                <input class="required-category" type="hidden" id="genre" name="genre">  <!-- with js puts the genre here -->
-            </div>
-
-
-            <div id="book-priority-cont">
-                <p>Priority</p>
-                <div class="option-priority" id="priority-1">1</div>
-                <div class="option-priority" id="priority-2">2</div>
-                <div class="option-priority" id="priority-3">3</div>
-                <div class="option-priority" id="priority-4">4</div>
-                <div class="option-priority" id="priority-5">5</div>
-                <input class="required-category" type="hidden" id="priority" name="priority">  <!-- with js puts the priority level here -->
+                <p><b>Genre</b></p>
+                <div class="options-cont">
+                    <div class="option-genre" id="genre-fantasy">Fantasy</div>
+                    <div class="option-genre" id="genre-scifi">Science Fiction</div>
+                    <div class="option-genre" id="genre-romance">Romance</div>
+                    <div class="option-genre" id="genre-mystery">Mystery</div>
+                    <div class="option-genre" id="genre-contemporary">Contemporary</div>
+                    <div class="option-genre" id="genre-litfic">Literary Fiction</div>
+                    <div class="option-genre" id="genre-horror">Horror</div>
+                    <div class="option-genre" id="genre-nonfiction">Non Fiction</div>
+                    <div class="option-genre" id="genre-childrens">Children's</div>
+                    <div class="option-genre" id="genre-graphicnovel">Graphic Novel</div>
+                    <input class="required-category" type="hidden" id="genre" name="genre">  <!-- with js puts the genre here -->
+                </div>
             </div>
 
             <div id="book-length-cont">
-                <p>Length</p>
-                <div class="option-length" id="length-100less">>100s</div>
-                <div class="option-length" id="length-100s">100s</div>
-                <div class="option-length" id="length-200s">200s</div>
-                <div class="option-length" id="length-300s">300s</div>
-                <div class="option-length" id="length-400s">400s</div>
-                <div class="option-length" id="length-500s">500s</div>
-                <div class="option-length" id="length-600s">600s</div>
-                <div class="option-length" id="length-600plus">600s+</div>
-                <input class="required-category" type="hidden" id="length" name="length">  <!-- with js puts the length here -->
+                <p><b>Length</b></p>
+                <div class="options-cont">
+                    <div class="option-length" id="length-100less">&lt;100</div>
+                    <div class="option-length" id="length-100s">100s</div>
+                    <div class="option-length" id="length-200s">200s</div>
+                    <div class="option-length" id="length-300s">300s</div>
+                    <div class="option-length" id="length-400s">400s</div>
+                    <div class="option-length" id="length-500s">500s</div>
+                    <div class="option-length" id="length-600s">600s</div>
+                    <div class="option-length" id="length-600plus">700+</div>
+                    <input class="required-category" type="hidden" id="length" name="length">  <!-- with js puts the length here -->
+                </div>
             </div>
 
             <div id="book-agerange-cont">
-                <p>Age Range</p>
-                <div class="option-agerange" id="agerange-childrens">Children's</div>
-                <div class="option-agerange" id="agerange-mg">Middle Grade</div>
-                <div class="option-agerange" id="agerange-ya">Young Adult</div>
-                <div class="option-agerange" id="agerange-adult">Adult</div>
-                <div class="option-agerange" id="agerange-NA">Not Applicable</div>
-                <input class="required-category" type="hidden" id="agerange" name="agerange">  <!-- with js puts the length here -->
+                <p><b>Age Range</b></p>
+                <div class="options-cont">
+                    <div class="option-agerange" id="agerange-childrens">Children's</div>
+                    <div class="option-agerange" id="agerange-mg">Middle Grade</div>
+                    <div class="option-agerange" id="agerange-ya">Young Adult</div>
+                    <div class="option-agerange" id="agerange-adult">Adult</div>
+                    <div class="option-agerange" id="agerange-NA">Not Applicable</div>
+                    <input class="required-category" type="hidden" id="agerange" name="agerange">  <!-- with js puts the length here -->
+                </div>
             </div>
 
             <div id="book-type-cont">
-                <p>Series?</p>
-                <div class="option-type" id="new-series">Standalone</div>
-                <div class="option-type" id="duotrilogy">Duology/Trilogy</div>
-                <div class="option-type" id="series">Series</div>
-                <div class="option-type" id="spinoff">Spin-off</div>
-                <input class="required-category" type="hidden" id="type" name="type">  <!-- with js puts the choice here -->
+                <p><b>Series?</b></p>
+                <div class="options-cont">
+                    <div class="option-type" id="new-series">Standalone</div>
+                    <div class="option-type" id="duotrilogy">Duology/Trilogy</div>
+                    <div class="option-type" id="series">Series</div>
+                    <div class="option-type" id="spinoff">Spin-off</div>
+                    <input class="required-category" type="hidden" id="type" name="type">  <!-- with js puts the choice here -->
+                </div>
             </div>
 
             <!-- hopefully make this appear when if the user picks series -->
-            <div id="book-continuing-cont">
-                <p>For book series (optional)</p>
-                <div class="option-continuing" id="new-series">New series</div>
-                <div class="option-continuing" id="option-continuing">Continuing</div>
-                <input type="hidden" id="continuing" name="continuing">  <!-- with js puts the choice here -->
+            <div class="book-continuing-cont">
+                <p><b>For book series (optional)</b></p>
+                <div class="options-cont">
+                    <div class="option-continuing" id="new-series">New series</div>
+                    <div class="option-continuing" id="option-continuing">Continuing</div>
+                    <input type="hidden" id="continuing" name="continuing">  <!-- with js puts the choice here -->
+                </div>
             </div>
 
             <button id="new-book-submit" type="submit">Submit</button>
@@ -352,80 +374,93 @@
                 <button type="button" id="edit-exit-form">X</button>
             </div>
 
+            <hr>
+
             <div id="book-title-cont">
                 <label for="title">Title</label>
-                <input required id="edit-title" name="edit-title" type="text">
+                <input required class="text-input" id="edit-title" name="edit-title" type="text">
             </div>
 
             <div id="book-author-cont">
                 <label for="author">Author</label>
-                <input required id="edit-author" name="edit-author" type="text">
+                <input required class="text-input" id="edit-author" name="edit-author" type="text">
+            </div>
+
+            <div id="book-priority-cont">
+                <p>Priority</p>
+                <div class="options-cont">
+                    <div class="edit-option-priority" id="edit-priority-1">1</div>
+                    <div class="edit-option-priority" id="edit-priority-2">2</div>
+                    <div class="edit-option-priority" id="edit-priority-3">3</div>
+                    <div class="edit-option-priority" id="edit-priority-4">4</div>
+                    <div class="edit-option-priority" id="edit-priority-5">5</div>
+                    <input class="edit-required-category" type="hidden" id="edit-priority" name="edit-priority">  <!-- with js puts the priority level here -->
+                </div>
             </div>
 
             <div id="book-genre-cont">
                 <p>Genre</p>
-                <div class="edit-option-genre" id="edit-genre-Fantasy">Fantasy</div>
-                <div class="edit-option-genre" id="edit-genre-Science-Fiction">Science Fiction</div>
-                <div class="edit-option-genre" id="edit-genre-Romance">Romance</div>
-                <div class="edit-option-genre" id="edit-genre-Mystery">Mystery</div>
-                <div class="edit-option-genre" id="edit-genre-Contemporary">Contemporary</div>
-                <div class="edit-option-genre" id="edit-genre-Literary-Fiction">Literary Fiction</div>
-                <div class="edit-option-genre" id="edit-genre-Horror">Horror</div>
-                <div class="edit-option-genre" id="edit-genre-Non-Fiction">Non Fiction</div>
-                <div class="edit-option-genre" id="edit-genre-Children's">Children's</div>
-                <div class="edit-option-genre" id="edit-genre-Graphic-Novel">Graphic Novel</div>
-                <input class="edit-required-category" type="hidden" id="edit-genre" name="edit-genre">  <!-- with js puts the genre here -->
-            </div>
-
-
-            <div id="book-priority-cont">
-                <p>Priority</p>
-                <div class="edit-option-priority" id="edit-priority-1">1</div>
-                <div class="edit-option-priority" id="edit-priority-2">2</div>
-                <div class="edit-option-priority" id="edit-priority-3">3</div>
-                <div class="edit-option-priority" id="edit-priority-4">4</div>
-                <div class="edit-option-priority" id="edit-priority-5">5</div>
-                <input class="edit-required-category" type="hidden" id="edit-priority" name="edit-priority">  <!-- with js puts the priority level here -->
+                <div class="options-cont">
+                    <div class="edit-option-genre" id="edit-genre-Fantasy">Fantasy</div>
+                    <div class="edit-option-genre" id="edit-genre-Science-Fiction">Science Fiction</div>
+                    <div class="edit-option-genre" id="edit-genre-Romance">Romance</div>
+                    <div class="edit-option-genre" id="edit-genre-Mystery">Mystery</div>
+                    <div class="edit-option-genre" id="edit-genre-Contemporary">Contemporary</div>
+                    <div class="edit-option-genre" id="edit-genre-Literary-Fiction">Literary Fiction</div>
+                    <div class="edit-option-genre" id="edit-genre-Horror">Horror</div>
+                    <div class="edit-option-genre" id="edit-genre-Non-Fiction">Non Fiction</div>
+                    <div class="edit-option-genre" id="edit-genre-Children's">Children's</div>
+                    <div class="edit-option-genre" id="edit-genre-Graphic-Novel">Graphic Novel</div>
+                    <input class="edit-required-category" type="hidden" id="edit-genre" name="edit-genre">  <!-- with js puts the genre here -->
+                </div>
             </div>
 
             <div id="book-length-cont">
                 <p>Length</p>
-                <div class="edit-option-length" id="edit-length->100s">>100s</div>
-                <div class="edit-option-length" id="edit-length-100s">100s</div>
-                <div class="edit-option-length" id="edit-length-200s">200s</div>
-                <div class="edit-option-length" id="edit-length-300s">300s</div>
-                <div class="edit-option-length" id="edit-length-400s">400s</div>
-                <div class="edit-option-length" id="edit-length-500s">500s</div>
-                <div class="edit-option-length" id="edit-length-600s">600s</div>
-                <div class="edit-option-length" id="edit-length-600s+">600s+</div>
-                <input class="edit-required-category" type="hidden" id="edit-length" name="edit-length">  <!-- with js puts the length here -->
+                <div class="options-cont">
+                    <div class="edit-option-length" id="edit-length-<100">&lt;100</div>
+                    <div class="edit-option-length" id="edit-length-100s">100s</div>
+                    <div class="edit-option-length" id="edit-length-200s">200s</div>
+                    <div class="edit-option-length" id="edit-length-300s">300s</div>
+                    <div class="edit-option-length" id="edit-length-400s">400s</div>
+                    <div class="edit-option-length" id="edit-length-500s">500s</div>
+                    <div class="edit-option-length" id="edit-length-600s">600s</div>
+                    <div class="edit-option-length" id="edit-length-700+">700+</div>
+                    <input class="edit-required-category" type="hidden" id="edit-length" name="edit-length">  <!-- with js puts the length here -->
+                </div>
             </div>
 
             <div id="book-agerange-cont">
                 <p>Age Range</p>
-                <div class="edit-option-agerange" id="edit-agerange-Children's">Children's</div>
-                <div class="edit-option-agerange" id="edit-agerange-Middle-Grade">Middle Grade</div>
-                <div class="edit-option-agerange" id="edit-agerange-Young-Adult">Young Adult</div>
-                <div class="edit-option-agerange" id="edit-agerange-Adult">Adult</div>
-                <div class="edit-option-agerange" id="edit-agerange-Not-Applicable">Not Applicable</div>
-                <input class="edit-required-category" type="hidden" id="edit-agerange" name="edit-agerange">  <!-- with js puts the length here -->
+                <div class="options-cont">
+                    <div class="edit-option-agerange" id="edit-agerange-Children's">Children's</div>
+                    <div class="edit-option-agerange" id="edit-agerange-Middle-Grade">Middle Grade</div>
+                    <div class="edit-option-agerange" id="edit-agerange-Young-Adult">Young Adult</div>
+                    <div class="edit-option-agerange" id="edit-agerange-Adult">Adult</div>
+                    <div class="edit-option-agerange" id="edit-agerange-Not-Applicable">Not Applicable</div>
+                    <input class="edit-required-category" type="hidden" id="edit-agerange" name="edit-agerange">  <!-- with js puts the length here -->
+                </div>
             </div>
 
             <div id="book-type-cont">
                 <p>Series?</p>
-                <div class="edit-option-type" id="edit-type-Standalone">Standalone</div>
-                <div class="edit-option-type" id="edit-type-Duology/Trilogy">Duology/Trilogy</div>
-                <div class="edit-option-type" id="edit-type-Series">Series</div>
-                <div class="edit-option-type" id="edit-type-Spin-off">Spin-off</div>
-                <input class="edit-required-category" type="hidden" id="edit-type" name="edit-type">  <!-- with js puts the choice here -->
+                <div class="options-cont">
+                    <div class="edit-option-type" id="edit-type-Standalone">Standalone</div>
+                    <div class="edit-option-type" id="edit-type-Duology/Trilogy">Duology/Trilogy</div>
+                    <div class="edit-option-type" id="edit-type-Series">Series</div>
+                    <div class="edit-option-type" id="edit-type-Spin-off">Spin-off</div>
+                    <input class="edit-required-category" type="hidden" id="edit-type" name="edit-type">  <!-- with js puts the choice here -->
+                </div>
             </div>
 
             <!-- hopefully make this appear when if the user picks series -->
-            <div id="book-continuing-cont">
+            <div class="book-continuing-cont">
                 <p>For book series (optional)</p>
-                <div class="edit-option-continuing" id="edit-continuing-New-series">New series</div>
-                <div class="edit-option-continuing" id="edit-continuing-Continuing">Continuing</div>
-                <input type="hidden" id="edit-continuing" name="edit-continuing">  <!-- with js puts the choice here -->
+                <div class="options-cont">
+                    <div class="edit-option-continuing" id="edit-continuing-New-series">New series</div>
+                    <div class="edit-option-continuing" id="edit-continuing-Continuing">Continuing</div>
+                    <input type="hidden" id="edit-continuing" name="edit-continuing">  <!-- with js puts the choice here -->
+                </div>
             </div>
 
             <input type="hidden" id="edit-id" name="edit-id">  <!-- unique to edit, let's the backend know which book this is -->
@@ -433,4 +468,8 @@
             <button id="edit-book-submit" type="submit">Submit</button>
         </form>
     </div>
+
+    <!-- only used when the menus are being shown -->
+    <div id="backdrop"></div>
+
 {% endblock %}

@@ -5,11 +5,15 @@
 {% endblock %}
 
 {% block main %}
-    <h2>Create a new account!</h2>
-    <form action="/register" method="POST">
-        <input class="login-register-inputs" name="username" placeholder="Username" type="text">
-        <input class="login-register-inputs" name="password" placeholder="Password" type="password">
-        <input class="login-register-inputs" name="confirmation" placeholder="Password again" type="password">
-        <button type="submit">Register</button>
-    </form>
+    <div class="login-register-conts">
+        <h2>Create a new account!</h2>
+        <form action="/register" method="POST">
+            <input class="login-register-inputs" name="username" placeholder="Username" type="text">
+            <input class="login-register-inputs" name="password" placeholder="Password" type="password">
+            <input class="login-register-inputs" name="confirmation" placeholder="Password again" type="password">
+            <button class="login-register-btns" type="submit">Register</button>
+        </form>
+        <h3 id="login">Already have an account?</h3>
+        <a class="login" href="/login">Log In</a>
+    </div>
 {% endblock %}
