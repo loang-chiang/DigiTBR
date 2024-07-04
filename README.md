@@ -8,7 +8,7 @@ The story behind this web app is a tale of two qualities of mine: one good and o
 ## Technologies Used
 For this project, I used the **Flask** framework! For the frontend part of the program, I used **HTML/CSS**, the **Bootstrap** library for improved styling, and **JavaScript**, which was also used to communicate between my front- and back-ends.
 My back-end was built using **Python** and **Flask-SQLAlchemy** for the SQLite database.
-Finally, I also used Bootstrap Icons for the plus sign and open book icons and Google Fonts - the entire website uses Zilla Slab!
+Finally, I also used Bootstrap Icons for the plus sign and open book icons as well as Google Fonts - the entire website uses Zilla Slab!
 
 ## Functionality
 ### Adding a New Book
