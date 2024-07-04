@@ -30,7 +30,7 @@ As you keep adding more books to your TBR, you'll notice that it gets harder to 
 * Length (from Longest to Shortest and from Shortest to Longest)
 * Others (sort by Author, Genre, Age Range, and Type!)
 
-### Editing 
+### Editing a Book's Info
 Oops! While searching for your next favorite read, you've stumbled upon a typo you made while adding a book entry. No worries! Just click on the `Edit` button at the bottom left corner of the book card you want to change the information of, and a form similar to the new book one you already know will appear, filled with your chosen entry's current information. You can now fix your typo and maybe also edit the priority level or any other part of the entry if you feel like it. After you're done, just click on the `Save` button and the form will disappear, leaving you with your now-fixed book card.
 
 ### Deleting a Book's Info
