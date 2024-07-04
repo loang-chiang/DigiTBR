@@ -13,22 +13,22 @@ Finally, I also used Bootstrap Icons for the plus sign and open book icons as we
 ## Functionality
 ### Adding a New Book
 Starting out with this app is easy: after registering a new account and landing on the homepage, you just have to click on the plus sign at the right corner of the screen to add a new book! You'll notice that a dialog will pop up asking you to input the following information for the book:
-* Title
-* Author
-* Priority: here you are able to rank from 1 to 5 how much you want to read this book. If you still aren't sure, don't worry too much about it as you'll always be able to edit this information
-* Genre
-* Length
-* Age Range
-* Type: meaning whether it is an Standalone novel, part of a Duology/Trilogy, part of a Series, or a Spin-off
-* Continuing: if you choose either Duology/Trilogy or Series for the type category, an additional (totally optional) category will pop up asking if this is a New Series or one you're Continuing
+* **Title**
+* **Author**
+* **Priority:** here you are able to rank from 1 to 5 how much you want to read this book. If you still aren't sure, don't worry too much about it as you'll always be able to edit this information
+* **Genre**
+* **Length**
+* **Age Range**
+* **Type:** meaning whether it is an Standalone novel, part of a Duology/Trilogy, part of a Series, or a Spin-off
+* **Continuing:** if you choose either Duology/Trilogy or Series for the type category, an additional (totally optional) category will pop up asking if this is a New Series or one you're Continuing
 Once you fill in all the necessary information, you can click on the `Save` button and two things will happen: the new book form will hide, and a new card with your book's information will appear!
 
 ### Sorting Your TBR
 As you keep adding more books to your TBR, you'll notice that it gets harder to pick the right book to get started on! That's why just under the DigiTBR title, there are several sorting options to help you out:
-* Title (from A to Z and from Z to A. A to Z is the default order)
-* Priority (from Highest to Lowest and from Lowest to Highest)
-* Length (from Longest to Shortest and from Shortest to Longest)
-* Others (sort by Author, Genre, Age Range, and Type!)
+* **Title** (from A to Z and from Z to A. A to Z is the default order)
+* **Priority** (from Highest to Lowest and from Lowest to Highest)
+* **Length** (from Longest to Shortest and from Shortest to Longest)
+* **Others** (sort by Author, Genre, Age Range, and Type!)
 
 ### Editing a Book's Info
 Oops! While searching for your next favorite read, you've stumbled upon a typo you made while adding a book entry. No worries! Just click on the `Edit` button at the bottom left corner of the book card you want to change the information of, and a form similar to the new book one you already know will appear, filled with your chosen entry's current information. You can now fix your typo and maybe also edit the priority level or any other part of the entry if you feel like it. After you're done, just click on the `Save` button and the form will disappear, leaving you with your now-fixed book card.
